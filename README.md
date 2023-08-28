@@ -6,11 +6,11 @@ Sudoku game implemented in Python
 * Board上輸入答案
 
 ## 功能：
-- [*] Create UI (Pygame)
-- [*] New game (w/ different difficulty)
+- [x] Create UI (Pygame)
+- [x] New game (w/ different difficulty)
 - [ ] Reset
 - [ ] backtracking algorithm solving
-- [*] different difficulty
+- [x] different difficulty
       
 
 
