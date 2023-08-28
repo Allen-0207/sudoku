@@ -1,20 +1,19 @@
-import pygame
+import tkinter as tk
 
-from Board import UI_Board
-from setting import Setting
+
+from Board import SudokuUI
+from generate import Game
 
 
 
 if __name__ == '__main__':
-    (width, height) = (700, 700)
-    screen = pygame.display.set_mode((width, height))
-    
-    board = UI_Board(screen)
-    setting = Setting(screen)
-    pygame.display.flip()
-    runing = True
+    window = tk.Tk()
 
-    while runing:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                runing = False
+    game = Game()    
+        
+    board = SudokuUI(window, game)
+    
+    window.geometry('700x700')
+    window.resizable(False, False) #Fix window size
+
+    window.mainloop()   
