@@ -2,15 +2,17 @@
 Sudoku game implemented in Python
 
 ## To-Do list
-* 清空Board
-* Board上輸入答案
+* Problem: 
+    * 答案會超過1個
+* 解完後顯示獲勝
 
 ## 功能：
 - [*] Create UI (Pygame)
 - [*] New game (w/ different difficulty)
-- [ ] Reset
+- [*] Reset
 - [ ] backtracking algorithm solving
 - [*] different difficulty
+- [ ] show sloved
       
 
 
