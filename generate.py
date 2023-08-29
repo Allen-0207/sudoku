@@ -37,9 +37,13 @@ class Game:
         elif(level == 5):
             remove_cell = random.randint(59, 61)
         
-        self.board = copy.deepcopy(self.solved_board)
+        board = copy.deepcopy(self.solved_board)
 
-        index = [i for i in range(81)]
+        # index = [i for i in range(81)]
+
+        index = []
+        for i in range(81):
+            index.append(i)
 
         while(remove_cell > 0):
             cell_id = random.sample(index, 1)[0]
@@ -48,18 +52,20 @@ class Game:
 
             index.remove(cell_id)
             
-            back_up_val = self.board[row][col]
-            self.board[row][col] = 0
+            back_up_val = board[row][col]
+            board[row][col] = 0
 
-            self.solution_count()
+            self.solution_count(board)
             if(self.counter > 1):
-                self.board[row][col] = back_up_val
+                board[row][col] = back_up_val
             else:
                 remove_cell -= 1
             self.counter = 0
         
+        self.board = copy.deepcopy(board)
+        self.answer_board = copy.deepcopy(board)
         # print(self.board)
-        return self.board
+        # return self.board
     
     # backtracking 
     def generate(self, i, j):
@@ -93,25 +99,25 @@ class Game:
         # Check block
         for b_i in range(block_i * 3, block_i * 3 + 3):
             for b_j in range(block_j * 3, block_j * 3 + 3):
-                if(self.board[b_i][b_j] == val):
+                if(board[b_i][b_j] == val):
                     return False
 
         # Check row
         for col in range(0, 9):
-            if(self.board[i][col] == val):
+            if(board[i][col] == val):
                 return False
         
         # Check column
         for row in range(0, 9):
-            if(self.board[row][j] == val):
+            if(board[row][j] == val):
                 return False
 
         return True        
     
 
-    def solution_count(self):
-        self.sudoku_matrix = copy.deepcopy(self.board)
-        self.sudoku_solved =  copy.deepcopy(self.board)
+    def solution_count(self, board):
+        self.sudoku_matrix = copy.deepcopy(board)
+        self.sudoku_solved =  copy.deepcopy(board)
         self.__count_solutions__(0, 0)
 
     def __count_solutions__(self, i, j):
@@ -125,7 +131,7 @@ class Game:
             if(self.sudoku_solved[i][j] != 0):
                 self.__count_solutions__(i, j + 1)
             else:
-                for val in range(1, 9):
+                for val in range(1, 10):
                     if(self.validate_cell(self.sudoku_solved, val, i, j)):
                         self.sudoku_solved[i][j] = val
                         self.__count_solutions__(i, j + 1)
