@@ -9,9 +9,10 @@ Sudoku game implemented in Python
 ## 功能：
 - [x] Create UI (Pygame)
 - [x] New game (w/ different difficulty)
-- [ ] Reset
+- [x] Reset
 - [ ] backtracking algorithm solving
 - [x] different difficulty
+- [ ] show solved
       
 
 
