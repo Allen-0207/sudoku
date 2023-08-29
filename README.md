@@ -7,12 +7,11 @@ Sudoku game implemented in Python
 * 解完後顯示獲勝
 
 ## 功能：
-- [*] Create UI (Pygame)
-- [*] New game (w/ different difficulty)
-- [*] Reset
+- [x] Create UI (Pygame)
+- [x] New game (w/ different difficulty)
+- [ ] Reset
 - [ ] backtracking algorithm solving
-- [*] different difficulty
-- [ ] show sloved
+- [x] different difficulty
       
 
 
