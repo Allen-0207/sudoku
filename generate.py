@@ -14,6 +14,12 @@ class Game:
         self.counter = 0
         self.__resetBoard()
 
+    def check_win(self):
+        if(self.solved_board == self.answer_board):
+            return True
+        
+        return False
+    
     
     def __resetBoard(self):
         self.solved_board = [[0 for i in range(9)] for j in range(9)]
@@ -22,7 +28,7 @@ class Game:
     def generate_board(self, level = 1):
         self.__resetBoard()
         self.generate(0, 0)
-        # print(self.solved_board)
+        print(self.solved_board)
 
         remove_cell = 32
         
@@ -34,8 +40,8 @@ class Game:
             remove_cell = random.randint(48, 52)
         elif(level == 4):
             remove_cell = random.randint(54, 56)
-        elif(level == 5):
-            remove_cell = random.randint(59, 61)
+        # elif(level == 5):
+        #     remove_cell = random.randint(59, 61)
         
         board = copy.deepcopy(self.solved_board)
 
@@ -51,6 +57,7 @@ class Game:
             col = cell_id % 9
 
             index.remove(cell_id)
+            # print(remove_cell)
             
             back_up_val = board[row][col]
             board[row][col] = 0
@@ -128,13 +135,13 @@ class Game:
                 self.counter += 1
                 return
             
-            if(self.sudoku_solved[i][j] != 0):
-                self.__count_solutions__(i, j + 1)
-            else:
-                for val in range(1, 10):
-                    if(self.validate_cell(self.sudoku_solved, val, i, j)):
-                        self.sudoku_solved[i][j] = val
-                        self.__count_solutions__(i, j + 1)
-                        self.sudoku_solved[i][j] = 0
-                        if(self.counter > 1):
-                            return
+        if(self.sudoku_solved[i][j] != 0):
+            self.__count_solutions__(i, (j + 1))
+        else:
+            for val in range(1, 10):
+                if(self.validate_cell(self.sudoku_solved, val, i, j)):
+                    self.sudoku_solved[i][j] = val
+                    self.__count_solutions__(i, (j + 1))
+                    self.sudoku_solved[i][j] = 0
+                    if(self.counter > 1):
+                        return
